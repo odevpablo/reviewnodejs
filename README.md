@@ -1,25 +1,8 @@
-# app-ponta-a-ponta
 
-======RELEMBRANDO FUNÇÕES DO NODE.JS=====
+# Review NODE.JS ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 
-1- criando servidor HTTP nativo
-<br/>
-2- API REST
-  -Fastfy
-  -CRUD 
-   / ROTAS
-   / REQUEST BODY
-   / ROUTE PARAMETERS
-    
+ Esta aplicação inclui a criação de um servidor HTTP nativo, uma API REST utilizando Fastify e operações CRUD.
 
 
 
 
-
-
-
-
-
-
-
------------------50% 
