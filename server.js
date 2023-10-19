@@ -21,12 +21,16 @@ server.post('/videos', (request, reply) => {
 
 
 } )
-server.get('/videos', () => {
-   const videos = database.list()
+server.get('/videos', (request) => {
+   const search = request.query.search
+
+   const videos = database.list(search)
+
    console.log(videos)
+   
    return videos
 } )
-server.put('/videos/:id', (request) => {
+server.put('/videos/:id', (request, reply) => {
     const videoId = request.params.id
     const {title, description, duration} = request.body
 
@@ -41,8 +45,13 @@ server.put('/videos/:id', (request) => {
 
 
 } )
-server.delete('/videos', () => {
-    return 'Hello Node.js'
+server.delete('/videos/:id', (request, reply) => {
+    const videoId = request.params.id
+
+    database.delete(videoId)
+
+    return reply.status(204).send()
+
 } )
 
 server.listen({

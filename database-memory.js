@@ -1,27 +1,42 @@
-import { randomUUID } from "crypto"
+import { randomUUID } from "crypto";
 
 export class DatabaseMemory {
-    #videos = new Map()
+    #videos = new Map();
 
-    list() {
-        return Array.from(this.#videos.entries()).map((videoArray) =>{
-            const id = videoArray[0]
-            const data = videoArray[1]
+    list(search) {
+        return Array.from(this.#videos.entries())
+        .map((videoArray) => {
+            const id = videoArray[0];
+            const data = videoArray[1];
 
             return {
                 id,
                 ...data,
             }
         })
+        .filter(video => {
+            if(search){
+                return video.title.includes(search)
+            }
+            return true
+        })
     }
 
-    create(video){
-        const videoId = randomUUID()
+    create(video) {
+        const videoId = randomUUID();
 
-        this.#videos.set(videoId, video)
+        this.#videos.set(videoId, video);
     }
 
-    update(video){
-        this.#videos.push(video)
+    update(id, video) {
+        if (this.#videos.has(id)) {
+            this.#videos.set(id, video);
+        } else {
+            throw new Error(`Video with ID ${id} does not exist`);
+        }
+    }
+
+    delete(id){
+        this.#videos.delete(id)
     }
 }
